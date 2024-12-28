@@ -47,3 +47,13 @@ my-beer-app/
         ├── Navbar.js
         ├── Layout.js
         └── ...
+
+## Ejecutar la instalacion de dependencias
+
+- Usar el script desde la raiz del backend:
+
+```bash
+source scripts/install_dependencies.sh
+```
+
+##
