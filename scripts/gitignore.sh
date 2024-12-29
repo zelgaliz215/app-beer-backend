@@ -8,3 +8,8 @@ env/
 __pycache__/
 *.pyc
 EOF
+
+# Forma alterna
+echo "env/" > .gitignore
+echo "__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
