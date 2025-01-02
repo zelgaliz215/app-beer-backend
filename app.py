@@ -15,11 +15,11 @@ def create_app(config_class = Config):
     db.init_app(app)
 
     # Importar Blueprintst de cada modulo 
-
-    # Registrar blueprints
-
-
+    from modules.users.routes import users_bp
     
+    # Registrar blueprints
+    app.register_blueprint(users_bp, url_prefix='/api/users')
+
     return app
 
-# Observa que aquí no hay modelos ni nada que dependa directamente de un import de app. Esto evita conflictos y hace el código más limpio.
+# Observa que aquí no hay modelos ni nada que dependa directamente de un import de app. Esto evita conflictos y hace el código más limpio.  
