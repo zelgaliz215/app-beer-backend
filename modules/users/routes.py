@@ -62,3 +62,72 @@ def create_user():
             'role': new_user.role
         }
     }), 201
+    
+
+# Get user by id
+@users_bp.route('/<int:user_id>', methods=['GET'])
+def get_user_by_id(user_id):
+    user = User.query.get(user_id)
+    if user:
+        return {"user": user.to_dict()}, 200
+    return {"error": "User not found"}, 404
+
+    
+# Update/put user in database
+@users_bp.route('/<int:id>', methods=['PUT'])
+def update_user(id):
+    # Busqueda del usuario en la bd
+    user = User.query.get_or_404(id)
+    # Lectura de la peticion en json
+    data = request.get_json()
+    
+    # Validacion de existencia del usuario
+    if not user:
+        return jsonify({'error': 'Usuario no encontrado'}), 404
+    
+    name = data.get('name')
+    email = data.get('email')
+    role = data.get('role')
+    
+    # Actualizacion de de los datos del usuario
+    if name:
+        user.name = name
+    if email:
+        user.email = email
+    if role:
+        user.role = role
+    
+    # Almacenamiento de los cambios en la bd
+    db.session.commit()
+    
+    # Respuesta de actualización
+    return jsonify({
+        'message': 'Usuario actualizado exitosamente',
+        'user': {
+            'id': user.id,
+            'name': user.name,
+            'email': user.email,
+            'role': user.role
+        }
+    }), 200
+    
+
+# Delete user from database
+@users_bp.route('/<int:id>', methods=['DELETE'])
+def delete_user(id):
+    # Busqueda del usuario en la bd
+    user = User.query.get_or_404(id)
+    
+    # Validacion de existencia del usuario
+    if not user:
+        return jsonify({'error': 'Usuario no encontrado'}), 404
+    
+    # Eliminacion del usuario de la bd
+    db.session.delete(user)
+    db.session.commit()
+    
+    # Respuesta de eliminación
+    return jsonify({
+        'message': 'Usuario eliminado exitosamente',
+        'user': user.id
+    }), 204

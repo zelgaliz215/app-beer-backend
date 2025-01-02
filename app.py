@@ -19,7 +19,9 @@ def create_app(config_class = Config):
     
     # Registrar blueprints
     app.register_blueprint(users_bp, url_prefix='/api/users')
-
+    
+    # Lista de rutas registradas
+    print(app.url_map)
     return app
 
 # Observa que aquí no hay modelos ni nada que dependa directamente de un import de app. Esto evita conflictos y hace el código más limpio.  

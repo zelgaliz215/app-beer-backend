@@ -15,3 +15,11 @@ class User(db.Model):
     # Metodo para imprimir el objeto
     def __repr__(self):
         return f'<User {self.username}>'
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "email": self.email,
+            "role": self.role
+        }
