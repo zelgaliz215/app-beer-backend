@@ -14,7 +14,11 @@ def create_app(config_class = Config):
     # Inicializacion de la bd con la app
     db.init_app(app)
 
-    # Importar & Registrar blueprints
+    # Importar Blueprintst de cada modulo 
+
+    # Registrar blueprints
+
+
     
     return app
 

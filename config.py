@@ -1,3 +1,4 @@
+# Modulo de configuracion de la aplicacion
 import os
 from dotenv import load_dotenv
 
