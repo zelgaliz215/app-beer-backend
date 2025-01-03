@@ -1,4 +1,6 @@
 from flask import Flask
+from flask_cors import CORS
+
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from database import db  # Importar el objeto db definido en database.py
@@ -13,6 +15,10 @@ def create_app(config_class = Config):
     
     # Inicializacion de la bd con la app
     db.init_app(app)
+
+    # Middleware
+    # Cors
+    CORS(app)
 
     # Importar Blueprintst de cada modulo 
     from modules.users.routes import users_bp
