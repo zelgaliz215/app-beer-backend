@@ -11,6 +11,7 @@ class User(db.Model):
     name = db.Column(db.String(10), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     role = db.Column(db.String(50), nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
     
     # Metodo para imprimir el objeto
     def __repr__(self):
@@ -21,5 +22,6 @@ class User(db.Model):
             "id": self.id,
             "name": self.name,
             "email": self.email,
-            "role": self.role
+            "role": self.role,
+            "create_at": self.created_at
         }

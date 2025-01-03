@@ -16,7 +16,8 @@ def get_user():
             'id': u.id,
             'name': u.name,
             'email': u.email,
-            'role': u.role
+            'role': u.role,
+            'date_created': u.created_at
         } for u in user
     ]), 200
 
@@ -107,7 +108,8 @@ def update_user(id):
             'id': user.id,
             'name': user.name,
             'email': user.email,
-            'role': user.role
+            'role': user.role,
+            'create_at': user.created_at
         }
     }), 200
     
